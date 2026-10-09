@@ -155,7 +155,6 @@ textarea.input{min-height:110px;resize:vertical}
 .topbar{position:sticky;top:0;z-index:30;height:68px;background:rgba(255,255,255,.92);backdrop-filter:saturate(1.4) blur(8px);border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;padding:0 28px}
 .topbar h1{font-size:19px;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .menu-btn{display:none}
-.bell-dot{position:absolute;top:5px;right:4px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--bad);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
 .avatar{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:var(--harbour);color:#fff;flex:none;letter-spacing:.02em}
 .avatar.sky{background:var(--sky)} .avatar.lg{width:52px;height:52px;font-size:17px} .avatar.sm{width:30px;height:30px;font-size:11.5px}
 .avatar.soft{background:var(--sky-100);color:var(--harbour)}
@@ -368,33 +367,20 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:760px}
 .appt.past .date-tile .m{background:#8A94A4}
 .appt h3{font-size:15.5px}
 
-/* Payments */
-.pay-sum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-bottom:20px}
-.pay-sum .card{padding:20px}
-.pay-sum b{font-family:var(--display);font-size:28px;font-weight:600;display:block;margin-top:6px;line-height:1.1}
-.invoice-doc{font-size:14px}
-.invoice-doc table{width:100%;border-collapse:collapse;margin:14px 0}
-.invoice-doc td,.invoice-doc th{padding:9px 0;border-bottom:1px solid var(--line-2);text-align:left}
-.invoice-doc td:last-child,.invoice-doc th:last-child{text-align:right}
-.invoice-doc tfoot td{font-weight:700;border-bottom:0}
-
-/* FAQ */
-.faq{border-bottom:1px solid var(--line-2)}
-.faq:last-child{border-bottom:0}
-.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 22px;background:none;border:0;cursor:pointer;text-align:left;font-weight:600;font-size:14.5px}
-.faq-q .ic{transition:transform .2s;color:var(--muted)}
-.faq.open .faq-q .ic{transform:rotate(180deg)}
-.faq-a{display:none;padding:0 22px 18px;color:var(--slate);font-size:14px;max-width:72ch}
-.faq.open .faq-a{display:block}
-.help-grid{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:20px;align-items:start}
-mark{background:#FFF1BF;color:inherit;border-radius:3px;padding:0 1px}
-
 /* Profile */
 .profile-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:start}
 .pref{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--line-2)}
 .pref:last-child{border-bottom:0}
 .pref b{display:block;font-size:14px;font-weight:600}
 .pref span{font-size:12.5px;color:var(--muted)}
+
+/* Activation */
+#activate{min-height:100vh;align-items:center;justify-content:center;background:var(--canvas);padding:32px 16px}
+.act-card{width:100%;max-width:460px;padding:32px}
+.pw-rules{list-style:none;margin:-4px 0 14px;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:12.5px;color:var(--muted)}
+.pw-rules li{display:flex;align-items:center;gap:6px}
+.pw-rules li.ok{color:var(--ok)}
+@media (max-width:480px){.pw-rules{grid-template-columns:1fr}.act-card{padding:24px 20px}}
 
 /* Admin */
 .admin-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:20px;align-items:start}
@@ -448,7 +434,7 @@ mark{background:#FFF1BF;color:inherit;border-radius:3px;padding:0 1px}
 /* Responsive */
 @media (max-width:1180px){
   .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .dash-grid,.detail-grid,.admin-grid,.help-grid{grid-template-columns:minmax(0,1fr)}
+  .dash-grid,.detail-grid,.admin-grid{grid-template-columns:minmax(0,1fr)}
   .chk-sum{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
 @media (max-width:960px){
@@ -477,7 +463,6 @@ mark{background:#FFF1BF;color:inherit;border-radius:3px;padding:0 1px}
   .stats{gap:12px}
   .stat{padding:14px}
   .stat-num{font-size:26px}
-  .pay-sum{grid-template-columns:1fr}
   .chk-sum{grid-template-columns:repeat(2,minmax(0,1fr))}
   .grid-2{grid-template-columns:1fr}
   .appt{grid-template-columns:auto minmax(0,1fr);}
@@ -554,6 +539,8 @@ mark{background:#FFF1BF;color:inherit;border-radius:3px;padding:0 1px}
 </section>
 
 <!-- ============ APP ============ -->
+<section id="activate" style="display:none" aria-label="Activate your portal account"></section>
+
 <div id="app">
   <aside class="sidebar" id="sidebar" aria-label="Main navigation">
     <div class="side-logo"><img src="data:image/png;base64,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" alt="OzVisa Group"></div>
@@ -565,9 +552,6 @@ mark{background:#FFF1BF;color:inherit;border-radius:3px;padding:0 1px}
     <header class="topbar">
       <button class="icon-btn menu-btn" data-act="openDrawer" aria-label="Open menu"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16" /> <path d="M4 12h16" /> <path d="M4 19h16" /></svg></button>
       <h1 id="pageTitle">Dashboard</h1>
-      <div class="pop-wrap" id="bellWrap">
-        <button class="icon-btn" data-act="toggleNotif" aria-label="Notifications" aria-haspopup="true"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.268 21a2 2 0 0 0 3.464 0" /> <path d="M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326" /></svg><span class="bell-dot" id="bellDot"></span></button>
-      </div>
       <div class="pop-wrap" id="userWrap">
         <button class="user-btn" data-act="toggleUser" aria-haspopup="true" aria-label="Account menu">
           <span class="avatar" id="topAvatar">SM</span>
@@ -595,7 +579,7 @@ const LOGO="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAANUAAAAzCAYAAAAAXU0cAA
    Front-end only. All data is fictional and stored in this
    browser's localStorage. Nothing is sent to a server.
    ========================================================== */
-const STORE_KEY = 'ozvisa-portal-demo-v2';
+const STORE_KEY = 'ozvisa-portal-demo-v7';
 const CLIENT = 'Sarah Mitchell';
 
 const ic = (n, cls = '') => `<svg class="ic ${cls}" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n] || ''}</svg>`;
@@ -655,9 +639,9 @@ const MAX_MB = 10;
 /* ---------- Seed data (fictional) ---------- */
 function seed(){
   return {
-    v:2, entered:false, mode:'client', rememberEmail:'',
+    v:7, entered:false, mode:'client', rememberEmail:'',
     user:{ name:'Sarah Mitchell', email:'sarah.mitchell@example.com', phone:'+61 400 555 018', contact:'Email', country:'Australia', city:'Sydney, NSW',
-      prefs:{ email:true, sms:false, portal:true, reminders:true, digest:false } },
+      prefs:{ email:true } },
     apps:[
       { id:'OZV-2026-1042', client:CLIENT, visa:'Partner Visa', subclass:'820/801', stream:'Onshore partner (temporary and permanent)', applicant:'Sarah Mitchell', sponsor:'James Mitchell (Australian citizen)',
         stage:3, flag:null, agent:'Emma Wilson', opened:'2026-06-12', updated:'2026-10-08T15:20:00', nextAction:'Provide relationship evidence',
@@ -710,55 +694,46 @@ function seed(){
       {id:'a3', t:'2026-10-08T11:05:00', app:'OZV-2026-1042', icon:'shield-check', text:'Your migration agent reviewed your identity documents.'},
       {id:'a4', t:'2026-10-07T10:05:00', app:'OZV-2026-1087', icon:'list-checks', text:'A new document checklist has been added.'}
     ],
+    access:[
+      {id:'x1', client:'Sarah Mitchell', email:'sarah.mitchell@example.com', apps:['OZV-2026-1042','OZV-2026-1087'], status:'Active', invitedAt:'2026-06-20T10:00:00', expires:'2026-06-27T10:00:00', acceptedAt:'2026-06-20T18:32:00', token:'tk-sarah-demo', invitedBy:'Emma Wilson'},
+      {id:'x2', client:'Priya Raman', email:'priya.raman@example.com', apps:['OZV-2026-0988'], status:'Invite sent', invitedAt:'2026-10-07T11:00:00', expires:'2026-10-14T11:00:00', token:'tk-priya-7f3k2q', invitedBy:'Daniel Reyes'},
+      {id:'x3', client:'Wei Zhang', email:'wei.zhang@example.com', apps:['OZV-2026-1060'], status:'Invite sent', invitedAt:'2026-09-24T09:00:00', expires:'2026-10-01T09:00:00', token:'tk-wei-p9d4m1', invitedBy:'Daniel Reyes'}
+    ],
     adminLog:[
       {id:'l1', t:'2026-10-08T15:20:00', text:'Emma Wilson moved OZV-2026-1042 (Sarah Mitchell) to Application Preparation.'},
       {id:'l2', t:'2026-10-07T10:05:00', text:'Emma Wilson issued a document checklist for OZV-2026-1087 (Sarah Mitchell).'},
       {id:'l3', t:'2026-10-06T12:00:00', text:'Daniel Reyes started agent review for OZV-2026-0988 (Priya Raman).'},
       {id:'l4', t:'2026-10-02T09:30:00', text:'Emma Wilson requested further evidence for OZV-2026-1011 (Marco Rossi).'}
     ],
-    notifs:[
-      {id:'n1', t:'2026-10-09T08:00:00', text:'Three documents require your attention.', icon:'files', go:'documents?outstanding', read:false},
-      {id:'n2', t:'2026-10-08T15:20:00', text:'Your migration agent updated your application status.', icon:'activity', go:'application/OZV-2026-1042', read:false},
-      {id:'n4', t:'2026-10-07T09:00:00', text:'Your client declaration is awaiting signature.', icon:'signature', go:'documents?outstanding', read:false},
-      {id:'n5', t:'2026-10-06T13:00:00', text:'An upcoming appointment requires confirmation.', icon:'calendar-clock', go:'appointments', read:true}
-    ],
     appts:[
       {id:'p1', type:'Migration Consultation', date:'2026-10-20', time:'10:30', format:'Video Consultation', agent:'Emma Wilson', status:'Confirmed', app:'OZV-2026-1042', notes:'Walk through the draft relationship statement and confirm lodgement timing. A video link will be emailed the day before.'},
       {id:'p2', type:'Document Review Call', date:'2026-10-28', time:'14:00', format:'Phone Call', agent:'Emma Wilson', status:'Awaiting Confirmation', app:'OZV-2026-1087', notes:'Check Margaret\'s financial evidence and travel history before preparation starts.'},
       {id:'p3', type:'Visitor Visa Planning Call', date:'2026-09-30', time:'15:00', format:'Phone Call', agent:'Emma Wilson', status:'Completed', app:'OZV-2026-1087', notes:'Confirmed tourist stream and intended travel dates.'},
       {id:'p4', type:'Initial Consultation', date:'2026-06-12', time:'11:00', format:'Video Consultation', agent:'Emma Wilson', status:'Completed', app:'OZV-2026-1042', notes:'Discussed eligibility and recommended a combined 820/801 application.'}
-    ],
-    invoices:[
-      {id:'OZ-INV-1024', app:'OZV-2026-1042', desc:'Partner visa professional fees, stage 1 (onboarding and document collection)', issued:'2026-06-20', due:'2026-07-04', amount:2475, status:'Paid', paidOn:'2026-06-27'},
-      {id:'OZ-INV-1031', app:'OZV-2026-1087', desc:'Visitor visa professional fees (full service)', issued:'2026-10-02', due:'2026-10-23', amount:1650, status:'Outstanding'},
-      {id:'OZ-INV-1045', app:'OZV-2026-1042', desc:'Partner visa professional fees, stage 2 (preparation and lodgement)', issued:null, due:'On lodgement', amount:2475, status:'Scheduled'}
-    ],
-    supportSent:[]
+    ]
   };
 }
 
 let S = load();
 function load(){
-  try { const raw = localStorage.getItem(STORE_KEY); if(raw){ const o = JSON.parse(raw); if(o && o.v===2) return o; } } catch(e){}
+  try { const raw = localStorage.getItem(STORE_KEY); if(raw){ const o = JSON.parse(raw); if(o && o.v===7) return o; } } catch(e){}
   return seed();
 }
 function save(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(S)); } catch(e){} }
 
 /* UI-only state (not persisted) */
 const ui = { appFilter:'all', appSearch:'', docApp:'all', docCat:'all', docStatus:'all', docSearch:'', docOutstanding:false,
-  apptTab:'upcoming', faqSearch:'', faqOpen:{}, selMs:null, adminSel:null, assistOpen:false, assistLog:[], pop:null, pendingUpload:null };
+  apptTab:'upcoming', selMs:null, adminSel:null, assistOpen:false, assistLog:[], pop:null, pendingUpload:null };
 
 const myApps = () => S.apps.filter(a => a.client === CLIENT);
 const getApp = id => S.apps.find(a => a.id === id);
 const getDoc = id => S.docs.find(d => d.id === id);
-const unreadNotifs = () => S.notifs.filter(n => !n.read).length;
 const pendingDocs = () => S.docs.filter(needsUpload);
 const openTasks = () => S.tasks.filter(t => !t.done);
 const upcomingAppts = () => S.appts.filter(p=>!['Completed','Cancelled'].includes(p.status)).length;
 const deadlinesSoon = () => openTasks().filter(t => daysUntil(t.due) <= 5).length;
 
 function addActivity(app, text, icon='activity'){ S.activity.unshift({id:uid('a'), t:nowISO(), app, icon, text}); }
-function addNotif(text, go, icon='bell'){ S.notifs.unshift({id:uid('n'), t:nowISO(), text, go, icon, read:false}); }
 
 /* ---------- Toasts ---------- */
 function toast(title, msg='', type='success'){
@@ -782,7 +757,7 @@ function openModal({title, sub='', body='', foot='', wide=false, onMount}){
 function closeModal(){ $('#modalMount').innerHTML=''; }
 
 /* ---------- Router ---------- */
-const TITLES = {dashboard:'Dashboard', applications:'My Applications', application:'Application Details', documents:'Documents', appointments:'Appointments', payments:'Payments', help:'Help & Support', profile:'Profile & Settings', admin:'Admin Demo · Case Overview'};
+const TITLES = {dashboard:'Dashboard', applications:'My Applications', application:'Application Details', documents:'Documents', appointments:'Appointments', profile:'Profile & Settings', admin:'Admin Demo · Case Overview'};
 let route = {page:'dashboard', param:null, query:''};
 function go(path){ const h = '#/' + path; if(location.hash === h) renderRoute(); else location.hash = h; }
 function parseHash(){
@@ -793,6 +768,8 @@ function parseHash(){
 }
 function renderRoute(){
   closePops();
+  const act = location.hash.match(/^#\/activate\/([\w-]+)/);
+  if(act){ showActivate(act[1]); return; }
   if(!S.entered){ showLogin(); return; }
   showApp();
   route = parseHash();
@@ -812,9 +789,9 @@ function refresh(){ // re-render current page without scrolling
   const y = window.scrollY; renderShell(); $('#content').innerHTML = (PAGES[route.page]||PAGES.dashboard)(); window.scrollTo(0,y);
 }
 
-function showLogin(){ $('#app').classList.remove('on'); $('#login').style.display=''; $('#fab') && ($('#assistMount').innerHTML=''); ui.assistOpen=false;
+function showLogin(){ $('#activate').style.display='none'; $('#app').classList.remove('on'); $('#login').style.display=''; $('#fab') && ($('#assistMount').innerHTML=''); ui.assistOpen=false;
   if(S.rememberEmail){ $('#lgEmail').value = S.rememberEmail; $('#lgRemember').checked = true; } document.title='Sign in · OzVisa Group Visa Portal (Prototype)'; }
-function showApp(){ $('#login').style.display='none'; $('#app').classList.add('on'); }
+function showApp(){ $('#activate').style.display='none'; $('#login').style.display='none'; $('#app').classList.add('on'); }
 
 /* ---------- Shell ---------- */
 const NAV = [
@@ -822,8 +799,6 @@ const NAV = [
   {k:'applications', l:'My Applications', i:'briefcase'},
   {k:'documents', l:'Documents', i:'files', c:()=>pendingDocs().length},
   {k:'appointments', l:'Appointments', i:'calendar'},
-  {k:'payments', l:'Payments', i:'credit-card'},
-  {k:'help', l:'Help & Support', i:'life-buoy'},
   {k:'profile', l:'Profile & Settings', i:'user-cog'}
 ];
 function renderShell(){
@@ -846,9 +821,6 @@ function renderShell(){
   $('#pageTitle').textContent = TITLES[route.page];
   document.title = `${TITLES[route.page]} · OzVisa Group Visa Portal (Prototype)`;
   $('#adminStrip').classList.toggle('hidden', !admin);
-  const n = unreadNotifs();
-  $('#bellDot').textContent = n; $('#bellDot').style.display = n ? '' : 'none';
-  $('#bellWrap').style.display = admin ? 'none' : '';
   $('#topAvatar').textContent = admin ? 'EW' : initials(S.user.name);
   $('#topAvatar').className = 'avatar' + (admin?' sky':'');
   $('#topName').textContent = admin ? 'Emma Wilson' : S.user.name;
@@ -1041,7 +1013,7 @@ PAGES.application = () => {
     <div class="stack">
       <section class="card card-pad"><h3 style="margin-bottom:14px">Your migration agent</h3>
         <div class="agent"><span class="avatar lg sky">${initials(a.agent)}</span><div><b>${a.agent}</b><span class="small muted">Migration Case Manager</span></div></div>
-        <div class="row" style="margin-top:16px"><button class="btn btn-ghost btn-sm" data-act="contactAgent" data-app="${a.id}">${ic('calendar-plus','sm')} Book a call</button><button class="btn btn-ghost btn-sm" data-act="nav" data-to="help">${ic('life-buoy','sm')} Send an enquiry</button></div></section>
+        <div class="row" style="margin-top:16px"><button class="btn btn-ghost btn-sm" data-act="contactAgent" data-app="${a.id}">${ic('calendar-plus','sm')} Book a call</button><button class="btn btn-ghost btn-sm" data-act="nav" data-to="appointments">${ic('calendar','sm')} View appointments</button></div></section>
       <section class="card card-pad"><h3 style="margin-bottom:10px">Application summary</h3>
         <ul class="list-plain"><li><span class="muted">Applicant</span><b style="text-align:right">${esc(a.applicant)}</b></li><li><span class="muted">Stream</span><span style="text-align:right">${esc(a.stream)}</span></li>
         <li><span class="muted">Sponsor</span><span style="text-align:right">${esc(a.sponsor)}</span></li><li><span class="muted">Opened</span><span>${fmtDate(a.opened)}</span></li>
@@ -1207,77 +1179,9 @@ function apptForm(p={}){
 }
 function validDate(v){ if(!v){ return 'Choose a date.'; } if(v < todayISO()) return 'Choose a date from today onwards.'; const wd=parseD(v).getDay(); if(wd===0||wd===6) return 'Appointments are available Monday to Friday.'; return ''; }
 
-/* ---------- Payments ---------- */
-const invBadge = s => `<span class="badge ${({'Paid':'b-ok','Outstanding':'b-warn','Scheduled':'b-neutral','Overdue':'b-bad'})[s]}">${s}</span>`;
-PAGES.payments = () => {
-  const total = S.invoices.reduce((s,i)=>s+i.amount,0), paid = S.invoices.filter(i=>i.status==='Paid').reduce((s,i)=>s+i.amount,0), out = S.invoices.filter(i=>i.status==='Outstanding').reduce((s,i)=>s+i.amount,0);
-  return `<div class="page-head"><div><h1>Payments</h1><p>Your professional fees with OzVisa Group, and invoices issued so far.</p></div></div>
-  <div class="note warn" style="margin-bottom:18px">${ic('triangle-alert')}<span>All financial information on this page is illustrative sample data. No payment gateway is connected and no payment details are requested. Government visa application charges are paid separately to the Department of Home Affairs and aren't shown here.</span></div>
-  <div class="pay-sum"><div class="card"><span class="small muted">Total professional fees</span><b>${money(total)}</b><span class="tiny faint">Across ${myApps().length} applications, incl. GST</span></div>
-    <div class="card"><span class="small muted">Amount paid</span><b style="color:var(--ok)">${money(paid)}</b><div class="progress" style="margin-top:10px"><span style="width:${total?paid/total*100:0}%;background:var(--ok)"></span></div></div>
-    <div class="card"><span class="small muted">Outstanding balance</span><b style="color:${out?'var(--warn)':'var(--navy)'}">${money(out)}</b><span class="tiny faint">${money(total-paid-out)} scheduled for future milestones</span></div></div>
-  <section class="card"><div class="card-head"><h2>Invoice history</h2></div><div class="table-wrap"><table class="tbl"><thead><tr><th>Invoice</th><th>Description</th><th>Issue date</th><th>Due date</th><th>Amount</th><th>Status</th><th style="text-align:right">Actions</th></tr></thead><tbody>
-  ${S.invoices.map(i=>`<tr><td><b>${i.id}</b><div class="tiny muted">${i.app}</div></td><td class="wrap" style="max-width:300px">${esc(i.desc)}</td><td>${i.issued?fmtDate(i.issued):'Not yet issued'}</td><td>${/\d{4}-/.test(i.due)?fmtDate(i.due):esc(i.due)}</td><td><b>${money(i.amount)}</b></td><td>${invBadge(i.status)}</td>
-    <td>${i.issued?`<div class="actions"><button class="btn btn-ghost btn-sm" data-act="viewInvoice" data-id="${i.id}">${ic('eye','sm')} View Invoice</button><button class="btn btn-ghost btn-sm" data-act="downloadInvoice" data-id="${i.id}">${ic('download','sm')} Download</button></div>`:`<span class="tiny muted" style="display:block;text-align:right">Issued at lodgement</span>`}</td></tr>`).join('')}
-  </tbody></table></div></section>`;
-};
-function invoiceHTML(i, standalone){
-  const a = getApp(i.app); const gst = i.amount/11;
-  const body = `<div class="invoice-doc"><div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start">
-    <img src="${LOGO}" alt="OzVisa Group" style="height:40px"><div style="text-align:right"><div style="font-family:var(--display,sans-serif);font-size:20px;font-weight:600">Tax invoice</div><div>${i.id}</div></div></div>
-    <p style="margin-top:12px;padding:8px 12px;background:#FCF1DC;border-radius:8px;font-size:12.5px;color:#6B4206">Sample invoice generated by a prototype. Not a real tax invoice and not a request for payment.</p>
-    <div style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:16px;font-size:13.5px"><div><b>Billed to</b><br>${esc(S.user.name)}<br>${esc(S.user.email)}</div>
-    <div style="text-align:right"><b>Issued</b> ${fmtDate(i.issued)}<br><b>Due</b> ${fmtDate(i.due)}<br><b>Matter</b> ${i.app}${a?` · ${a.visa} (${a.subclass})`:''}</div></div>
-    <table><thead><tr><th>Description</th><th>Amount</th></tr></thead><tbody><tr><td>${esc(i.desc)}</td><td>${money(i.amount - gst)}</td></tr><tr><td>GST (10%)</td><td>${money(gst)}</td></tr></tbody>
-    <tfoot><tr><td>Total (AUD)</td><td>${money(i.amount)}</td></tr></tfoot></table>
-    <p style="font-size:13px">Status: <b>${i.status}</b>${i.paidOn?` on ${fmtDate(i.paidOn)}`:''}</p></div>`;
-  if(!standalone) return body;
-  return `<!DOCTYPE html><html lang="en-AU"><head><meta charset="utf-8"><title>${i.id} (sample)</title><style>body{font-family:system-ui,Arial,sans-serif;color:#021B3F;max-width:720px;margin:40px auto;padding:0 20px}table{width:100%;border-collapse:collapse;margin:16px 0}td,th{padding:9px 0;border-bottom:1px solid #E2E7EE;text-align:left}td:last-child,th:last-child{text-align:right}tfoot td{font-weight:700;border:0}</style></head><body>${body}</body></html>`;
-}
-function downloadInvoice(id){
-  const i = S.invoices.find(x=>x.id===id); if(!i) return;
-  try{
-    const blob = new Blob([invoiceHTML(i,true)], {type:'text/html'});
-    const url = URL.createObjectURL(blob); const a = document.createElement('a');
-    a.href=url; a.download=`${i.id}-sample.html`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
-    toast('Invoice downloaded', `${i.id}-sample.html was generated in your browser.`);
-  } catch(e){ toast('Download didn\'t start', 'Your browser blocked the file. Try View Invoice and print instead.', 'error'); }
-}
-
-/* ---------- Help & Support ---------- */
-const FAQS = [
-  ['How do I track my application?', 'Open My Applications and choose View Details. The timeline shows each stage of OzVisa Group\'s preparation workflow, which stages are complete and what\'s happening now. Select any milestone to see its date and notes. These stages are internal to OzVisa Group and aren\'t live statuses from the Department of Home Affairs.'],
-  ['Which documents do I need to provide?', 'Go to Documents and choose View Checklist. It lists every item still needed for each application, with a short note from your case manager explaining what\'s acceptable.'],
-  ['How can I contact my migration agent?', 'Request a phone or video appointment from the Appointments page, or choose Book a call with your agent on any application page. For a quick question, send an enquiry from Help & Support.'],
-  ['How do I upload a replacement document?', 'In Documents, find the item and choose Replace (or Re-upload if your case manager has asked for a new version). Drag the file into the upload window or browse for it, then confirm.'],
-  ['What does "Under Review" mean?', 'Your case manager has received the document and is checking it. Once it\'s accepted, the status changes to Approved. If something needs fixing, it changes to Re-upload Required with a note explaining why.'],
-  ['How will I know when my application status changes?', 'You\'ll see a notification on the bell icon, an entry in Recent Activity on your dashboard, and an email or SMS if you\'ve turned those on in Profile & Settings.'],
-  ['Where can I find my invoices?', 'All invoices are under Payments. You can view each one or download a copy. Government visa application charges are paid separately and don\'t appear there.'],
-  ['How do I request an appointment?', 'Go to Appointments and choose Request Appointment. Pick a preferred date and time and tell us what you\'d like to discuss. Your case manager will confirm the booking.']
-];
-function hl(text, q){ const t = esc(text); if(!q) return t; const re = new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&') + ')','ig'); return t.replace(re,'<mark>$1</mark>'); }
-function faqHTML(){
-  const q = ui.faqSearch.trim();
-  const list = FAQS.map((f,i)=>({f,i})).filter(({f})=>!q || (f[0]+' '+f[1]).toLowerCase().includes(q.toLowerCase()));
-  if(!list.length) return `<div class="empty">${ic('circle-help')}<b>No answers match “${esc(q)}”</b>Send us an enquiry using the form and we'll help.</div>`;
-  return list.map(({f,i})=>{ const open = q ? true : !!ui.faqOpen[i]; return `<div class="faq ${open?'open':''}"><button class="faq-q" data-act="faq" data-i="${i}" aria-expanded="${open}">${hl(f[0],q)}${ic('chevron-down')}</button><div class="faq-a">${hl(f[1],q)}</div></div>`; }).join('');
-}
-PAGES.help = () => `<div class="page-head"><div><h1>Help &amp; Support</h1><p>Answers to common questions, and a way to reach the team when you need more help.</p></div></div>
-  <div class="help-grid"><div class="stack">
-    <label class="search" style="max-width:none"><span class="sr-only">Search help</span>${ic('search')}<input class="input" data-input="faqSearch" placeholder="Search questions, for example “upload” or “invoice”" value="${esc(ui.faqSearch)}"></label>
-    <section class="card" id="faqList">${faqHTML()}</section></div>
-    <div class="stack"><section class="card card-pad"><h2>Send an enquiry</h2><p class="small muted" style="margin:4px 0 16px">We'll pass it to the right person on your case.</p>
-      <div class="field"><label for="spSub">Subject</label><input class="input" id="spSub" maxlength="90" placeholder="What do you need help with?"></div>
-      <div class="field"><label for="spApp">Application reference</label><select class="input" id="spApp"><option value="General">General enquiry</option>${myApps().map(a=>`<option value="${a.id}">${a.id} · ${a.visa}</option>`).join('')}</select></div>
-      <div class="field"><label for="spMsg">Message</label><textarea class="input" id="spMsg" placeholder="Give us as much detail as you can"></textarea></div>
-      <button class="btn btn-primary btn-block" data-act="submitSupport">${ic('send','sm')} Send enquiry</button>
-      <p class="tiny muted" style="margin-top:10px">Simulated. Enquiries stay in this browser and aren't sent anywhere.</p>
-      <div id="supportDone"></div></section>
-      ${S.supportSent.length?`<section class="card"><div class="card-head"><h3>Your enquiries</h3></div><ul class="list-plain" style="padding:4px 22px 10px">${S.supportSent.slice(0,4).map(s=>`<li><span><b style="display:block;font-size:13.5px">${esc(s.subject)}</b><span class="tiny muted">${s.ref} · ${s.app} · ${fmtDT(s.t)}</span></span><span class="badge b-info">Received</span></li>`).join('')}</ul></section>`:''}
-    </div></div>`;
 
 /* ---------- Profile ---------- */
-const PREFS = [['email','Email updates','Status changes and document requests by email'],['sms','SMS alerts','Text messages for urgent deadlines'],['portal','Portal notifications','Show updates on the notification bell'],['reminders','Deadline reminders','A reminder two days before a task is due'],['digest','Weekly summary','A short weekly overview of your applications']];
+const PREFS = [['email','Email updates','Status changes and document requests by email']];
 PAGES.profile = () => { const u = S.user; return `<div class="page-head"><div><h1>Profile &amp; Settings</h1><p>Your contact details and how you'd like to hear from us.</p></div>
   <button class="btn btn-primary" data-act="editProfile">${ic('pencil','sm')} Edit Profile</button></div>
   <div class="profile-grid"><div class="stack">
@@ -1306,7 +1210,8 @@ PAGES.admin = () => {
   const review = S.apps.filter(a=>a.stage===4 && !a.flag).length;
   if(!ui.adminSel || !getApp(ui.adminSel)) ui.adminSel = 'OZV-2026-1042';
   const sel = getApp(ui.adminSel);
-  return `<div class="page-head"><div><h1>Case overview</h1><p>A simulated staff view. Select a case and change its internal workflow status to see how clients are kept informed.</p></div></div>
+  return `<div class="page-head"><div><h1>Case overview</h1><p>A simulated staff view. Update a case's workflow status, or invite a client to set up their portal login.</p></div>
+    <button class="btn btn-primary" data-act="inviteClient">${ic('mail','sm')} Invite client</button></div>
   <div class="stats">
     ${statCard(clients,'Total active clients','With open cases','users','',null)}
     ${statCard(active.length,'Active applications','Not yet decided','briefcase','',null)}
@@ -1319,6 +1224,7 @@ PAGES.admin = () => {
         <td style="min-width:120px"><div class="row" style="gap:8px;flex-wrap:nowrap"><div class="progress" style="flex:1"><span style="width:${appProgress(a)}%"></span></div><span class="tiny">${appProgress(a)}%</span></div></td><td>${a.agent}</td><td>${fmtDate(a.updated)}</td>
         <td><button class="btn ${a.id===ui.adminSel?'btn-accent':'btn-ghost'} btn-sm" data-act="adminPick" data-id="${a.id}">${a.id===ui.adminSel?'Selected':'Manage'}</button></td></tr>`).join('')}
       </tbody></table></div></section>
+  ${accessCardHTML()}
   <div class="admin-grid"><div class="stack">
     <section class="card card-pad" id="adminPanel"><h2>Update status</h2>
       <div class="agent" style="margin:14px 0"><span class="avatar soft">${initials(sel.client)}</span><div><b>${esc(sel.client)}</b><span class="small muted">${sel.id} · ${sel.visa} (${sel.subclass})</span></div></div>
@@ -1327,9 +1233,9 @@ PAGES.admin = () => {
       <div class="field"><label for="adNext">Next action for client (optional)</label><input class="input" id="adNext" placeholder="${esc(sel.nextAction)}"></div>
       <div class="field"><label for="adNote">Milestone note (optional)</label><textarea class="input" id="adNote" style="min-height:80px" placeholder="Visible to the client on the timeline"></textarea></div>
       <button class="btn btn-primary btn-block" data-act="adminUpdate">${ic('check','sm')} Update status</button>
-      ${sel.client===CLIENT?`<p class="tiny muted" style="margin-top:10px">Sarah will get a notification, an activity entry and an updated timeline.</p>`:`<p class="tiny muted" style="margin-top:10px">Other demo clients don't have a portal login, so only this table and the activity log change.</p>`}
+      ${sel.client===CLIENT?`<p class="tiny muted" style="margin-top:10px">Sarah will see the new status, an activity entry and an updated timeline.</p>`:`<p class="tiny muted" style="margin-top:10px">Only Sarah's portal can be viewed in this demo, so for other clients only this table and the activity log change.</p>`}
     </section>
-    <section class="card card-pad"><h3>Try it</h3><p class="small muted" style="margin-top:6px">Move OZV-2026-1087 from Documents Required to Application Preparation, then switch to the client view and check the dashboard, notifications and timeline.</p>
+    <section class="card card-pad"><h3>Try it</h3><p class="small muted" style="margin-top:6px">Move OZV-2026-1087 from Documents Required to Application Preparation, then switch to the client view and check the dashboard and timeline.</p>
       <button class="btn btn-ghost btn-sm" style="margin-top:12px" data-act="switchMode">${ic('repeat-2','sm')} Switch to client view</button></section>
   </div><div class="stack">
     <section class="card"><div class="card-head"><h2>Recent case activity</h2></div>${feedList(S.adminLog.slice(0,8).map(l=>({...l,icon:'activity'})))}</section>
@@ -1348,27 +1254,17 @@ function adminUpdate(){
   S.adminLog.unshift({id:uid('l'), t:nowISO(), text:`Emma Wilson moved ${a.id} (${a.client}) from ${prev} to ${st}.`});
   if(a.client===CLIENT){
     addActivity(a.id, `Your ${a.visa} (${a.id}) status was updated to ${st}.`, 'activity');
-    addNotif(`Your migration agent updated ${a.visa} (${a.id}) to ${st}.`, 'application/'+a.id, 'activity');
   }
   save(); refresh();
-  toast('Status updated', `${a.id} is now at ${st}.${a.client===CLIENT?' Sarah has been notified.':''}`);
+  toast('Status updated', `${a.id} is now at ${st}.${a.client===CLIENT?' Sarah\'s portal has been updated.':''}`);
 }
 
-/* ---------- Notifications & menus ---------- */
+/* ---------- Menus ---------- */
 function closePops(){ document.querySelectorAll('.pop').forEach(p=>p.remove()); ui.pop=null; }
-function renderNotifPop(){
-  const wrap = $('#bellWrap'); wrap.querySelector('.pop')?.remove();
-  const el = document.createElement('div'); el.className='pop notif-pop'; el.setAttribute('role','dialog'); el.setAttribute('aria-label','Notifications');
-  const list = [...S.notifs].sort((a,b)=>b.t.localeCompare(a.t));
-  el.innerHTML = `<div class="pop-head"><b>Notifications</b>${unreadNotifs()?`<button class="btn btn-quiet btn-sm" data-act="readAll">Mark all as read</button>`:'<span class="tiny muted">All caught up</span>'}</div>
-    <div class="notif-list">${list.map(n=>`<div class="notif ${n.read?'':'unread'}" data-act="openNotif" data-id="${n.id}" role="button" tabindex="0"><span class="dot"></span><span class="ico">${ic(n.icon||'bell','sm')}</span><div><div class="t">${esc(n.text)}</div><div class="when">${rel(n.t)}</div></div>
-      ${n.read?'':`<button class="icon-btn mk" data-act="readOne" data-id="${n.id}" aria-label="Mark as read" title="Mark as read">${ic('check','sm')}</button>`}</div>`).join('')}</div>`;
-  wrap.appendChild(el); ui.pop='notif';
-}
 function renderUserPop(){
   const wrap = $('#userWrap'); const admin = S.mode==='admin';
   const el = document.createElement('div'); el.className='pop menu-pop'; el.setAttribute('role','menu');
-  el.innerHTML = `${admin?'':`<button data-act="nav" data-to="profile" role="menuitem">${ic('user-cog','sm')} Profile &amp; Settings</button><button data-act="nav" data-to="help" role="menuitem">${ic('life-buoy','sm')} Help &amp; Support</button>`}
+  el.innerHTML = `${admin?'':`<button data-act="nav" data-to="profile" role="menuitem">${ic('user-cog','sm')} Profile &amp; Settings</button>`}
     <button data-act="switchMode" role="menuitem">${ic('repeat-2','sm')} ${admin?'Switch to client view':'Switch to Admin Demo'}</button>
     <button data-act="privacy" role="menuitem">${ic('shield','sm')} Privacy &amp; prototype notice</button><hr>
     <button data-act="signOut" role="menuitem">${ic('log-out','sm')} Sign Out</button>`;
@@ -1394,11 +1290,11 @@ function assistReply(q){
     return `${myApps().map(a=>`<b>${a.visa} (${a.id})</b>: ${appStatus(a)}. ${a.flag==='docs'?'Your case manager is waiting on some documents before preparation can start.':STAGES[a.stage].desc}`).join('<br><br>')}<br><br><span class="tiny muted">These are OzVisa's internal workflow stages, not live Department of Home Affairs statuses.</span>${navBtn('applications','View applications')}`;
   }
   if(/contact|agent|emma|talk|speak|call|message|email/.test(t))
-    return `Your case manager is <b>Emma Wilson</b>, Migration Case Manager. You can request a phone or video consultation from Appointments, or send an enquiry from Help &amp; Support.${navBtn('appointments','Appointments')} ${navBtn('help','Send an enquiry')}`;
-  if(/invoice|pay|fee|cost|balance/.test(t)){ const out = S.invoices.filter(i=>i.status==='Outstanding'); return `You can view and download invoices on the Payments page. ${out.length?`${out.map(i=>`${i.id} (${money(i.amount)})`).join(', ')} ${out.length===1?'is':'are'} currently outstanding.`:'Nothing is outstanding.'}${navBtn('payments','Open Payments')}`; }
+    return `Your case manager is <b>Emma Wilson</b>, Migration Case Manager. You can request a phone or video consultation with her from the Appointments page.${navBtn('appointments','Request an appointment')}`;
+  if(/invoice|pay|fee|cost|balance|price/.test(t)) return `Fees and invoices aren't handled in this portal. For questions about your professional fees, raise them with your case manager at your next appointment.${navBtn('appointments','Appointments')}`;
   if(/appointment|book|meeting|consult|reschedul/.test(t)){ const p = S.appts.filter(x=>!isPastAppt(x)).sort((a,b)=>a.date.localeCompare(b.date))[0]; return `${p?`Your next appointment is a <b>${p.type}</b> on ${fmtDate(p.date,true)} at ${fmtClock(p.time)} (${p.format}).`:'You have no upcoming appointments.'} You can request, reschedule or cancel from the Appointments page.${navBtn('appointments','Open Appointments')}`; }
   if(/hello|hi\b|hey/.test(t)) return `Hi ${esc(S.user.name.split(' ')[0])}. Ask me about your next steps, documents, application status or how to reach your agent.`;
-  return `I can help you find your way around the portal: next steps, outstanding documents, what a status means, invoices and appointments. For anything about your personal circumstances, it's best to ask your migration agent.${navBtn('appointments','Book a call')}`;
+  return `I can help you find your way around the portal: next steps, outstanding documents, what a status means and appointments. For anything about your personal circumstances, it's best to ask your migration agent.${navBtn('appointments','Book a call')}`;
 }
 function renderAssist(){
   if(!ui.assistOpen){ $('#assistMount').innerHTML=''; $('#fab').setAttribute('aria-expanded','false'); return; }
@@ -1417,6 +1313,164 @@ function askAssist(q){
   setTimeout(()=>{ ui.assistLog.push({me:false, html:assistReply(q)}); renderAssist(); $('#assistInput')?.focus(); }, 550);
 }
 
+/* ---------- Admin: client portal access & email invites (simulated) ---------- */
+const INVITE_DAYS = [3, 7, 14];
+function accStatus(r){ if(!r) return 'No access'; if(r.status==='Invite sent' && new Date(r.expires) < new Date()) return 'Expired'; return r.status; }
+const accBadge = s => `<span class="badge ${({'Active':'b-ok','Invite sent':'b-info','Expired':'b-warn','Revoked':'b-bad','No access':'b-neutral'})[s]}">${s}</span>`;
+function allClients(){ const set = []; S.apps.forEach(a=>{ if(!set.includes(a.client)) set.push(a.client); }); S.access.forEach(r=>{ if(!set.includes(r.client)) set.push(r.client); }); return set; }
+function latestAccess(client){ return S.access.filter(r=>r.client===client).sort((a,b)=>b.invitedAt.localeCompare(a.invitedAt))[0] || null; }
+function inviteLink(r){ return location.href.split('#')[0] + '#/activate/' + r.token; }
+function accessRows(){ return allClients().map(c=>({client:c, rec:latestAccess(c), apps:S.apps.filter(a=>a.client===c)})); }
+function accessCardHTML(){
+  const rows = accessRows();
+  const count = s => rows.filter(r=>accStatus(r.rec)===s).length;
+  const ib = (act,id,icon,label,cls='') => `<button class="icon-btn ${cls}" style="width:34px;height:34px" data-act="${act}" data-id="${id}" aria-label="${label}" title="${label}">${ic(icon,'sm')}</button>`;
+  const body = rows.map(({client, rec, apps})=>{
+    const st = accStatus(rec);
+    let when = '—', acts = '';
+    if(st==='Active'){ when = `Activated ${fmtDate(rec.acceptedAt)}`; acts = `<button class="btn btn-danger btn-sm" data-act="revokeAccess" data-id="${rec.id}">Revoke access</button>`; }
+    else if(st==='Invite sent'){ const n = Math.max(0, Math.ceil((new Date(rec.expires)-new Date())/86400000)); when = `Sent ${fmtDate(rec.invitedAt)}<div class="tiny muted">Expires in ${n} day${n===1?'':'s'}</div>`;
+      acts = `<button class="btn btn-ghost btn-sm" data-act="previewInvite" data-id="${rec.id}">${ic('mail','sm')} View invite</button>${ib('copyInvite',rec.id,'files','Copy invite link')}${ib('resendInvite',rec.id,'refresh-cw','Resend invite')}${ib('revokeAccess',rec.id,'x','Revoke invite')}`; }
+    else if(st==='Expired'){ when = `Expired ${fmtDate(rec.expires)}`; acts = `<button class="btn btn-primary btn-sm" data-act="resendInvite" data-id="${rec.id}">${ic('refresh-cw','sm')} Resend invite</button>`; }
+    else if(st==='Revoked'){ when = `Revoked ${fmtDate(rec.revokedAt||rec.invitedAt)}`; acts = `<button class="btn btn-ghost btn-sm" data-act="inviteClient" data-client="${esc(client)}">${ic('mail','sm')} Re-invite</button>`; }
+    else { acts = `<button class="btn btn-primary btn-sm" data-act="inviteClient" data-client="${esc(client)}">${ic('mail','sm')} Send invite</button>`; }
+    const linked = (rec && rec.apps.length ? rec.apps : apps.map(a=>a.id));
+    return `<tr><td><div class="doc-name"><span class="avatar sm soft">${initials(client)}</span><div><b>${esc(client)}</b><span>${esc(rec?.email || 'No email on file')}</span></div></div></td>
+      <td>${linked.length?linked.map(id=>`<span class="tag" style="margin:2px 4px 2px 0">${id}</span>`).join(''):'<span class="muted small">None yet</span>'}</td>
+      <td>${accBadge(st)}</td><td>${when}</td><td><div class="actions" style="align-items:center">${acts}</div></td></tr>`;
+  }).join('');
+  return `<section class="card" style="margin-bottom:20px" id="accessCard"><div class="card-head"><div><h2>Client portal access</h2><p class="small muted" style="margin-top:2px">Invite clients by email. They choose their own password when they accept.</p></div>
+      <div class="row" style="gap:6px">${accBadge('Active').replace('Active',`${count('Active')} active`)}${accBadge('Invite sent').replace('Invite sent',`${count('Invite sent')} pending`)}${count('Expired')?accBadge('Expired').replace('Expired',`${count('Expired')} expired`):''}</div></div>
+    <div class="table-wrap"><table class="tbl"><thead><tr><th>Client</th><th>Linked applications</th><th>Portal access</th><th>Invite</th><th style="text-align:right">Actions</th></tr></thead><tbody>${body}</tbody></table></div>
+    <p class="tiny muted" style="padding:12px 22px 16px;margin:0;display:flex;gap:6px">${ic('info','sm')}<span>Simulated. No emails are sent and no accounts are created. Invite links open a demo activation screen in this browser.</span></p></section>`;
+}
+
+function inviteFormApps(client){
+  const apps = S.apps.filter(a=>a.client===client);
+  if(!apps.length) return `<p class="small muted">No applications for this client yet. You can link them once a case is opened.</p>`;
+  return apps.map(a=>`<label class="check" style="padding:8px 0"><input type="checkbox" class="invApp" value="${a.id}" checked> <span><b>${a.id}</b> <span class="muted">${a.visa} (${a.subclass})</span></span></label>`).join('');
+}
+function openInvite(client){
+  const eligible = allClients().filter(c=>!['Active','Invite sent'].includes(accStatus(latestAccess(c))));
+  const pre = client && eligible.includes(client) ? client : (eligible[0] || '__new');
+  openModal({ title:'Invite a client to the portal', sub:'They\'ll get an email with a secure link to set their own password.',
+    body:`<div class="field"><label for="invClient">Client</label><select class="input" id="invClient" data-change="invClient">${eligible.map(c=>`<option value="${esc(c)}" ${c===pre?'selected':''}>${esc(c)}</option>`).join('')}<option value="__new" ${pre==='__new'?'selected':''}>New client…</option></select></div>
+      <div class="field ${pre==='__new'?'':'hidden'}" id="invNameWrap"><label for="invName">Client full name</label><input class="input" id="invName" placeholder="For example, Alex Taylor"></div>
+      <div class="field"><label for="invEmail">Email address</label><input class="input" id="invEmail" type="email" placeholder="client@example.com" value="${esc(latestAccess(pre)?.email||'')}"><span class="hint">The invite is sent here and becomes the client's login email.</span></div>
+      <div class="field"><span class="label">Applications they can see</span><div id="invApps">${inviteFormApps(pre)}</div></div>
+      <div class="grid-2"><div class="field"><label for="invDays">Link expires after</label><select class="input" id="invDays">${INVITE_DAYS.map(d=>`<option value="${d}" ${d===7?'selected':''}>${d} days</option>`).join('')}</select></div>
+      <div class="field"><label for="invFrom">Sent on behalf of</label><select class="input" id="invFrom"><option>Emma Wilson</option><option>Daniel Reyes</option><option>Aisha Karim</option></select></div></div>
+      <div class="field"><label for="invMsg">Personal note (optional)</label><textarea class="input" id="invMsg" style="min-height:80px" placeholder="Added to the invite email"></textarea></div>
+      <p class="tiny muted">Simulated. No email is sent and no account is created.</p>`,
+    foot:`<button class="btn btn-ghost" data-act="closeModal">Cancel</button><button class="btn btn-primary" data-act="sendInvite">${ic('send','sm')} Send invite</button>` });
+}
+function sendInvite(){
+  const sel = $('#invClient').value; const isNew = sel==='__new';
+  const name = isNew ? $('#invName').value.trim() : sel; const email = $('#invEmail').value.trim().toLowerCase();
+  ['#invName','#invEmail'].forEach(s=>$(s).classList.remove('err'));
+  if(isNew && name.length<2){ $('#invName').classList.add('err'); toast('Enter the client\'s name','','error'); return; }
+  if(isNew && allClients().some(c=>c.toLowerCase()===name.toLowerCase())){ $('#invName').classList.add('err'); toast('Client already exists', 'Choose them from the client list instead.', 'error'); return; }
+  if(!/^\S+@\S+\.\S+$/.test(email)){ $('#invEmail').classList.add('err'); toast('Enter a valid email address','','error'); return; }
+  const clash = S.access.find(r=>r.email.toLowerCase()===email && r.client!==name && ['Active','Invite sent'].includes(accStatus(r)));
+  if(clash){ $('#invEmail').classList.add('err'); toast('Email already in use', `${clash.client} already has a login or pending invite with this email.`, 'error'); return; }
+  const days = Number($('#invDays').value); const from = $('#invFrom').value;
+  const rec = { id:uid('x'), client:name, email, apps:[...document.querySelectorAll('.invApp:checked')].map(i=>i.value), status:'Invite sent', invitedAt:nowISO(), expires:new Date(Date.now()+days*86400000).toISOString(), token:'tk-'+uid('')+uid(''), invitedBy:from, message:$('#invMsg').value.trim() };
+  S.access.push(rec);
+  S.adminLog.unshift({id:uid('l'), t:nowISO(), text:`${from} sent a portal invite to ${name} (${email}).`});
+  save(); refresh(); toast('Invite sent', `Simulated invite to ${email}. No email was actually sent.`);
+  previewInvite(rec.id);
+}
+function previewInvite(id){
+  const r = S.access.find(x=>x.id===id); if(!r) return; const first = r.client.split(' ')[0];
+  const apps = r.apps.map(getApp).filter(Boolean);
+  openModal({ wide:true, title:'Invite email', sub:`To ${esc(r.email)} · simulated, not sent`,
+    body:`<div style="border:1px solid var(--line);border-radius:14px;overflow:hidden">
+      <div style="padding:12px 16px;background:#F8FAFC;border-bottom:1px solid var(--line);font-size:13px"><b>Subject:</b> Set up your OzVisa Group client portal<br><span class="muted">From: ${esc(r.invitedBy)} via OzVisa Group</span></div>
+      <div style="padding:22px 22px 18px;font-size:14px;color:var(--slate)">
+        <img src="${LOGO}" alt="OzVisa Group" style="height:34px;margin-bottom:18px">
+        <p style="color:var(--navy)">Hi ${esc(first)},</p>
+        <p style="margin-top:10px">${esc(r.invitedBy)} has invited you to the OzVisa Group client portal, where you can follow your application, upload documents and manage appointments.</p>
+        ${r.message?`<p style="margin-top:12px;padding:10px 14px;border-left:3px solid var(--sky);background:var(--sky-50);color:#0F3F63">${esc(r.message)}</p>`:''}
+        ${apps.length?`<p style="margin-top:12px">You'll be able to see:</p><ul style="margin:6px 0 0;padding-left:18px">${apps.map(a=>`<li>${a.visa} (${a.subclass}), ${a.id}</li>`).join('')}</ul>`:''}
+        <p style="margin-top:18px"><button class="btn btn-primary" data-act="openInviteLink" data-id="${r.id}">Set up my account</button></p>
+        <p class="small" style="margin-top:14px">This link expires on ${fmtDT(r.expires)}. You'll choose your own password; we'll never ask for it by email or phone.</p>
+        <p class="tiny muted" style="margin-top:14px">If you weren't expecting this invite, you can ignore this email.</p>
+      </div></div>
+      <div class="field" style="margin-top:16px"><label for="invLink">Invite link</label><div class="row" style="flex-wrap:nowrap"><input class="input" id="invLink" readonly value="${esc(inviteLink(r))}"><button class="btn btn-ghost" data-act="copyInvite" data-id="${r.id}">${ic('files','sm')} Copy</button></div></div>`,
+    foot:`<button class="btn btn-ghost" data-act="closeModal">Done</button><button class="btn btn-primary" data-act="openInviteLink" data-id="${r.id}">${ic('user','sm')} Open as client</button>` });
+}
+function copyInvite(id){
+  const r = S.access.find(x=>x.id===id); if(!r) return; const link = inviteLink(r);
+  const ok = () => toast('Invite link copied', 'Paste it into a new tab to try the client\'s activation screen.');
+  if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(link).then(ok, ()=>fallbackCopy(link, ok)); } else fallbackCopy(link, ok);
+}
+function fallbackCopy(text, ok){ const t=document.createElement('textarea'); t.value=text; t.style.position='fixed'; t.style.opacity='0'; document.body.appendChild(t); t.select(); let done=false; try{ done=document.execCommand('copy'); }catch(e){} t.remove(); done ? ok() : toast('Couldn\'t copy the link', 'Select the link in View invite and copy it manually.', 'error'); }
+function resendInvite(id){
+  const r = S.access.find(x=>x.id===id); if(!r) return;
+  r.token = 'tk-'+uid('')+uid(''); r.invitedAt = nowISO(); r.expires = new Date(Date.now()+7*86400000).toISOString(); r.status = 'Invite sent';
+  S.adminLog.unshift({id:uid('l'), t:nowISO(), text:`Emma Wilson resent the portal invite to ${r.client} (${r.email}). The previous link no longer works.`});
+  save(); refresh(); toast('Invite resent', `New link sent to ${r.email}. The old link has stopped working. Simulated.`);
+}
+function revokeAccess(id){
+  const r = S.access.find(x=>x.id===id); if(!r) return; const active = accStatus(r)==='Active';
+  openModal({ title: active?`Revoke ${esc(r.client)}'s portal access?`:`Revoke the invite for ${esc(r.client)}?`,
+    sub: active?'They will no longer be able to sign in. You can invite them again later.':'The invite link will stop working immediately.',
+    body: r.client===CLIENT ? `<div class="note warn">${ic('triangle-alert')}<span>Sarah is the demo client, so her portal stays viewable here. In the live portal she would be signed out.</span></div>` : '',
+    foot:`<button class="btn btn-ghost" data-act="closeModal">Cancel</button><button class="btn btn-danger" data-act="confirmRevoke" data-id="${r.id}">${active?'Revoke access':'Revoke invite'}</button>` });
+}
+function confirmRevoke(id){
+  const r = S.access.find(x=>x.id===id); if(!r) return; const was = accStatus(r);
+  r.status='Revoked'; r.revokedAt=nowISO();
+  S.adminLog.unshift({id:uid('l'), t:nowISO(), text:`Emma Wilson revoked ${was==='Active'?'portal access':'the portal invite'} for ${r.client}.`});
+  save(); closeModal(); refresh(); toast(was==='Active'?'Access revoked':'Invite revoked', r.client);
+}
+
+/* Client-side activation screen (opened from the invite link) */
+function showActivate(token){
+  $('#login').style.display='none'; $('#app').classList.remove('on'); closeModal();
+  const el = $('#activate'); el.style.display='flex';
+  const r = S.access.find(x=>x.token===token); const st = accStatus(r);
+  document.title = 'Activate your account · OzVisa Group Visa Portal (Prototype)';
+  const back = `<button class="btn btn-ghost btn-block" data-act="backToAdmin" style="margin-top:12px">${ic('arrow-left','sm')} Return to admin demo</button>`;
+  const shell = inner => `<div class="act-card card"><img src="${LOGO}" alt="OzVisa Group" class="login-logo" style="margin-bottom:26px">${inner}</div>`;
+  if(!r || st!=='Invite sent'){
+    const msg = !r ? ['This link isn\'t valid','Check you\'ve copied the whole link from your invite email, or ask your case manager to send a new one.']
+      : st==='Active' ? ['This account is already set up','Sign in with your email and password instead.']
+      : st==='Expired' ? ['This invite has expired',`For your security, invite links only work for a limited time. Ask your case manager to resend it.`]
+      : ['This invite has been withdrawn','Contact your case manager if you think this is a mistake.'];
+    el.innerHTML = shell(`<div class="note ${st==='Active'?'':'warn'}" style="margin-bottom:18px">${ic(st==='Active'?'circle-check':'triangle-alert')}<span><b>${msg[0]}</b><br>${msg[1]}</span></div>${back}`);
+    return;
+  }
+  const apps = r.apps.map(getApp).filter(Boolean);
+  el.innerHTML = shell(`<h1 style="font-size:24px">Set up your portal account</h1>
+    <p class="muted" style="margin:8px 0 22px">Hi ${esc(r.client.split(' ')[0])}, ${esc(r.invitedBy)} has invited you to the OzVisa Group client portal. Create a password to finish setting up.</p>
+    <div class="field"><label for="actEmail">Email address</label><input class="input" id="actEmail" value="${esc(r.email)}" readonly style="background:#F5F7FA"></div>
+    ${apps.length?`<div class="field"><span class="label">You'll have access to</span>${apps.map(a=>`<div class="small" style="display:flex;gap:8px;align-items:center;margin-top:4px">${ic('briefcase','sm')}<span>${a.visa} (${a.subclass}) · ${a.id}</span></div>`).join('')}</div>`:''}
+    <div class="field"><label for="actPw">Create password</label><div class="input-wrap"><input class="input" id="actPw" type="password" autocomplete="new-password"><button type="button" class="icon-btn" data-act="toggleActPw" aria-label="Show password">${ic('eye')}</button></div></div>
+    <div class="field"><label for="actPw2">Confirm password</label><input class="input" id="actPw2" type="password" autocomplete="new-password"></div>
+    <ul class="pw-rules" id="pwRules"></ul>
+    <label class="check" style="margin:6px 0 20px"><input type="checkbox" id="actAgree"> I agree to the portal terms and privacy notice</label>
+    <button class="btn btn-primary btn-block" data-act="activateAccount" data-id="${r.id}">Activate account</button>
+    <p class="secure-line">${ic('shield-check')}<span>Prototype: your password isn't checked, saved or sent anywhere. Invite expires ${fmtDT(r.expires)}.</span></p>${back}`);
+  updatePwRules();
+}
+function pwChecks(){ const a=$('#actPw')?.value||'', b=$('#actPw2')?.value||''; return [[a.length>=10,'At least 10 characters'],[/\d/.test(a),'Includes a number'],[/[A-Za-z]/.test(a),'Includes a letter'],[a.length>0 && a===b,'Passwords match']]; }
+function updatePwRules(){ const el=$('#pwRules'); if(el) el.innerHTML = pwChecks().map(([ok,l])=>`<li class="${ok?'ok':''}">${ic(ok?'circle-check':'circle','sm')} ${l}</li>`).join(''); }
+function activateAccount(id){
+  const r = S.access.find(x=>x.id===id); if(!r || accStatus(r)!=='Invite sent'){ showActivate(r?.token||''); return; }
+  const fails = pwChecks().filter(([ok])=>!ok);
+  if(fails.length){ $('#actPw').classList.add('err'); toast('Check your password', fails.map(f=>f[1]).join(', ') + '.', 'error'); return; }
+  if(!$('#actAgree').checked){ toast('Accept the terms to continue','','error'); return; }
+  r.status='Active'; r.acceptedAt=nowISO();
+  S.adminLog.unshift({id:uid('l'), t:nowISO(), text:`${r.client} accepted their invite and activated their portal account.`});
+  save();
+  $('#activate').innerHTML = `<div class="act-card card"><img src="${LOGO}" alt="OzVisa Group" class="login-logo" style="margin-bottom:26px">
+    <div style="width:52px;height:52px;border-radius:50%;background:var(--ok-bg);color:var(--ok);display:grid;place-items:center;margin-bottom:16px">${ic('circle-check','lg')}</div>
+    <h1 style="font-size:24px">Your account is ready</h1><p class="muted" style="margin:8px 0 22px">${esc(r.client)} can now sign in with ${esc(r.email)}. In the live portal they would go straight to their dashboard.</p>
+    <button class="btn btn-primary btn-block" data-act="backToAdmin">${ic('arrow-left','sm')} Return to admin demo</button></div>`;
+  toast('Account activated', `${r.client}'s portal access is now active.`);
+}
+
 /* ---------- Actions ---------- */
 const A = {
   nav(t){ const to = t.dataset.to; if(to==='documents'){ ui.docOutstanding=false; ui.docApp='all'; } closeModal(); go(to); },
@@ -1430,21 +1484,16 @@ const A = {
       <li>Sign-in is not connected to any account system. No real authentication or identity verification takes place.</li>
       <li>The portal does not connect to ImmiAccount or the Department of Home Affairs. Statuses are OzVisa's internal workflow stages entered by staff, not live government data.</li>
       <li>Files you select are never uploaded, transmitted or stored. Only the file name is kept to demonstrate the flow.</li>
-      <li>No payments are processed and no payment details are requested.</li>
       <li>Demo changes are saved in your browser's local storage so they survive a refresh. Passwords are never stored. Use Reset demo data in Profile &amp; Settings to clear them.</li>
       <li>The Visa Help assistant uses predefined answers. It is not an AI model and does not give immigration advice.</li></ul>`, foot:`<button class="btn btn-primary" data-act="closeModal">Got it</button>`}); },
   openDrawer(){ document.body.classList.add('drawer'); }, closeDrawer(){ document.body.classList.remove('drawer'); },
   signOut(){ closePops(); S.entered=false; S.mode='client'; save(); ui.assistLog=[]; history.replaceState(null,'',location.pathname+location.search); showLogin(); toast('Signed out', 'Your demo changes are kept in this browser.', 'info'); },
   switchMode(){ closePops(); S.mode = S.mode==='admin' ? 'client' : 'admin'; save(); toast(S.mode==='admin'?'Admin demo view':'Client portal', S.mode==='admin'?'Simulated staff interface. No access controls.':'Back to Sarah\'s portal.', 'info'); go(S.mode==='admin'?'admin':'dashboard'); },
   resetDemo(){ openModal({title:'Reset demo data?', sub:'All changes made in this browser will be cleared and the sample data restored.', foot:`<button class="btn btn-ghost" data-act="closeModal">Keep my changes</button><button class="btn btn-danger" data-act="confirmReset">Reset demo data</button>`}); },
-  confirmReset(){ S = seed(); S.entered=true; save(); Object.assign(ui,{appFilter:'all',appSearch:'',docApp:'all',docCat:'all',docStatus:'all',docSearch:'',docOutstanding:false,apptTab:'upcoming',faqSearch:'',faqOpen:{},assistLog:[]}); closeModal(); toast('Demo data reset'); go('dashboard'); },
+  confirmReset(){ S = seed(); S.entered=true; save(); Object.assign(ui,{appFilter:'all',appSearch:'',docApp:'all',docCat:'all',docStatus:'all',docSearch:'',docOutstanding:false,apptTab:'upcoming',assistLog:[]}); closeModal(); toast('Demo data reset'); go('dashboard'); },
   closeModal(){ closeModal(); ui.pendingUpload=null; },
   overlayClose(t,e){ if(e.target===t){ closeModal(); ui.pendingUpload=null; } },
-  toggleNotif(){ const was = ui.pop==='notif'; closePops(); if(!was) renderNotifPop(); },
   toggleUser(){ const was = ui.pop==='user'; closePops(); if(!was) renderUserPop(); },
-  readOne(t,e){ e.stopPropagation(); const n=S.notifs.find(x=>x.id===t.dataset.id); if(n){ n.read=true; save(); renderShell(); renderNotifPop(); } },
-  readAll(){ S.notifs.forEach(n=>n.read=true); save(); renderShell(); renderNotifPop(); toast('All notifications marked as read'); },
-  openNotif(t){ const n=S.notifs.find(x=>x.id===t.dataset.id); if(!n) return; n.read=true; save(); closePops(); if(n.go.startsWith('documents')){ ui.docApp='all'; } go(n.go); },
   msGo(t){ go(`application/${t.dataset.app}?ms=${t.dataset.i}`); },
   msSel(t){ ui.selMs = Number(t.dataset.i); refresh(); },
   appFilter(t){ ui.appFilter = t.dataset.f; refresh(); },
@@ -1464,11 +1513,10 @@ const A = {
     if(!ok) return;
     d.status='Uploaded'; d.file='client_declaration_signed.pdf'; d.uploaded=new Date().toISOString().slice(0,10);
     S.tasks.filter(x=>x.doc===d.id).forEach(x=>x.done=true); addActivity(d.app,'You signed the client declaration.','signature');
-    S.notifs.filter(n=>/declaration/i.test(n.text)).forEach(n=>n.read=true);
     save(); closeModal(); toast('Declaration signed', 'Emma will review it with your application.'); refresh(); },
   apptTab(t){ ui.apptTab=t.dataset.t; refresh(); },
   viewAppt(t){ const p=S.appts.find(x=>x.id===t.dataset.id); openModal({title:p.type, sub:`${p.app} · with ${p.agent}`, body:`<ul class="list-plain"><li><span class="muted">Date</span><span>${fmtDate(p.date,true)}</span></li><li><span class="muted">Time</span><span>${fmtClock(p.time)} AEST</span></li><li><span class="muted">Format</span><span>${p.format}</span></li><li><span class="muted">Status</span>${apptBadge(p.status)}</li><li><span class="muted">Notes</span><span style="text-align:right;max-width:65%">${esc(p.notes||'—')}</span></li></ul>`, foot:`<button class="btn btn-primary" data-act="closeModal">Close</button>`}); },
-  confirmAppt(t){ const p=S.appts.find(x=>x.id===t.dataset.id); p.status='Confirmed'; S.notifs.filter(n=>/appointment/i.test(n.text)).forEach(n=>n.read=true); save(); toast('Appointment confirmed', `${fmtDate(p.date,true)} at ${fmtClock(p.time)}`); refresh(); },
+  confirmAppt(t){ const p=S.appts.find(x=>x.id===t.dataset.id); p.status='Confirmed'; save(); toast('Appointment confirmed', `${fmtDate(p.date,true)} at ${fmtClock(p.time)}`); refresh(); },
   reschedAppt(t){ const p=S.appts.find(x=>x.id===t.dataset.id); openModal({title:'Reschedule appointment', sub:`${p.type} · currently ${fmtDate(p.date)} at ${fmtClock(p.time)}`, body:apptForm(p)+`<p class="tiny muted">Simulated. Your case manager would confirm the new time.</p>`, foot:`<button class="btn btn-ghost" data-act="closeModal">Cancel</button><button class="btn btn-primary" data-act="saveResched" data-id="${p.id}">Request new time</button>`}); },
   saveResched(t){ const p=S.appts.find(x=>x.id===t.dataset.id); const d=$('#apDate').value; const err=validDate(d); if(err){ $('#apDate').classList.add('err'); toast('Check the date', err, 'error'); return; }
     p.date=d; p.time=$('#apTime').value; p.status='Requested'; save(); closeModal(); toast('Reschedule requested', `${fmtDate(d,true)} at ${fmtClock(p.time)}. Simulated.`); refresh(); },
@@ -1487,15 +1535,6 @@ const A = {
     if(!r){ $('#apReason').classList.add('err'); toast('Add a reason','Let your case manager know what you\'d like to discuss.','error'); return; }
     S.appts.push({id:uid('p'), type:$('#apType').value, date:d, time:$('#apTime').value, format:$('#apFormat').value, agent:'Emma Wilson', status:'Requested', app:$('#apApp').value, notes:r});
     ui.apptTab='upcoming'; save(); closeModal(); toast('Appointment requested', `${fmtDate(d,true)} at ${fmtClock(tm)}. Simulated.`); refresh(); },
-  viewInvoice(t){ const i=S.invoices.find(x=>x.id===t.dataset.id); openModal({wide:true, title:`Invoice ${i.id}`, sub:'Illustrative sample', body:invoiceHTML(i,false), foot:`<button class="btn btn-ghost" data-act="printInvoice" data-id="${i.id}">${ic('printer','sm')} Print</button><button class="btn btn-primary" data-act="downloadInvoice" data-id="${i.id}">${ic('download','sm')} Download Invoice</button>`}); },
-  downloadInvoice(t){ downloadInvoice(t.dataset.id); },
-  printInvoice(t){ const i=S.invoices.find(x=>x.id===t.dataset.id); const w=window.open('','_blank'); if(!w){ toast('Pop-up blocked','Allow pop-ups to print, or use Download.','error'); return; } w.document.write(invoiceHTML(i,true)); w.document.close(); w.focus(); setTimeout(()=>w.print(),300); },
-  faq(t){ const i=t.dataset.i; ui.faqOpen[i]=!ui.faqOpen[i]; const f=t.closest('.faq'); f.classList.toggle('open'); t.setAttribute('aria-expanded', f.classList.contains('open')); },
-  submitSupport(){ const sub=$('#spSub').value.trim(), msg=$('#spMsg').value.trim();
-    if(!sub||!msg){ if(!sub) $('#spSub').classList.add('err'); if(!msg) $('#spMsg').classList.add('err'); toast('Add a subject and message','','error'); return; }
-    const ref='SUP-'+String(4100+S.supportSent.length+1); S.supportSent.unshift({ref, subject:sub, app:$('#spApp').value, t:nowISO()}); save();
-    refresh(); $('#supportDone').innerHTML = `<div class="note" style="margin-top:14px">${ic('circle-check')}<span><b>Enquiry ${ref} received.</b> In the live portal, the team would reply within one business day. This is simulated and nothing was sent.</span></div>`;
-    toast('Enquiry submitted', `Reference ${ref}`); },
   editProfile(){ const u=S.user; openModal({title:'Edit profile', sub:'Sample details only. Please don\'t enter real personal information.', body:`
       <div class="field"><label for="pfName">Full name</label><input class="input" id="pfName" value="${esc(u.name)}"></div>
       <div class="grid-2"><div class="field"><label for="pfEmail">Email address</label><input class="input" id="pfEmail" type="email" value="${esc(u.email)}"></div>
@@ -1517,6 +1556,17 @@ const A = {
     ['#pwCur','#pwNew','#pwConf'].forEach(s=>$(s).value=''); toast('Password change simulated', 'Nothing was checked or stored.'); },
   adminPick(t){ ui.adminSel=t.dataset.id; refresh(); $('#adminPanel').scrollIntoView({behavior:'smooth', block:'nearest'}); },
   adminUpdate(){ adminUpdate(); },
+  inviteClient(t){ openInvite(t.dataset.client); },
+  sendInvite(){ sendInvite(); },
+  previewInvite(t){ previewInvite(t.dataset.id); },
+  copyInvite(t){ copyInvite(t.dataset.id); },
+  resendInvite(t){ resendInvite(t.dataset.id); },
+  revokeAccess(t){ revokeAccess(t.dataset.id); },
+  confirmRevoke(t){ confirmRevoke(t.dataset.id); },
+  openInviteLink(t){ const r=S.access.find(x=>x.id===t.dataset.id); closeModal(); location.hash='#/activate/'+r.token; },
+  activateAccount(t){ activateAccount(t.dataset.id); },
+  toggleActPw(t){ const p=$('#actPw'); const show=p.type==='password'; p.type=show?'text':'password'; $('#actPw2').type=p.type; t.innerHTML=ic(show?'eye-off':'eye'); t.setAttribute('aria-label', show?'Hide password':'Show password'); },
+  backToAdmin(){ S.entered=true; S.mode='admin'; save(); if(location.hash==='#/admin') renderRoute(); else go('admin'); },
   toggleAssist(){ ui.assistOpen=!ui.assistOpen; renderAssist(); if(ui.assistOpen) $('#assistInput').focus(); },
   askAssist(t){ askAssist(t.dataset.q); },
   sendAssist(){ askAssist($('#assistInput').value); }
@@ -1524,7 +1574,7 @@ const A = {
 
 document.addEventListener('click', e => {
   const t = e.target.closest('[data-act]');
-  if(ui.pop && !e.target.closest('.pop') && !(t && ['toggleNotif','toggleUser'].includes(t.dataset.act))) closePops();
+  if(ui.pop && !e.target.closest('.pop') && !(t && t.dataset.act==='toggleUser')) closePops();
   if(!t) return;
   const fn = A[t.dataset.act]; if(fn){ if(t.tagName==='A') e.preventDefault(); fn(t, e); }
 });
@@ -1535,11 +1585,11 @@ document.addEventListener('keydown', e => {
 let searchTimer;
 document.addEventListener('input', e => {
   const k = e.target.dataset.input; if(e.target.classList.contains('err')) e.target.classList.remove('err');
+  if(e.target.id==='actPw'||e.target.id==='actPw2') updatePwRules();
   if(!k) return; ui[k] = e.target.value;
   clearTimeout(searchTimer); searchTimer = setTimeout(()=>{
     if(k==='appSearch') $('#appList').innerHTML = appListHTML();
     if(k==='docSearch') refreshDocs();
-    if(k==='faqSearch') $('#faqList').innerHTML = faqHTML();
   }, 120);
 });
 document.addEventListener('change', e => {
@@ -1547,6 +1597,7 @@ document.addEventListener('change', e => {
   if(e.target.id==='hiddenFile'){ const f=e.target.files[0]; if(f) chooseFile(f); return; }
   if(!k) return;
   if(k==='docApp'||k==='docCat'||k==='docStatus'){ ui[k]=e.target.value; refreshDocs(); }
+  if(k==='invClient'){ const v=e.target.value; $('#invNameWrap').classList.toggle('hidden', v!=='__new'); $('#invApps').innerHTML = v==='__new' ? inviteFormApps('') : inviteFormApps(v); $('#invEmail').value = v==='__new' ? '' : (latestAccess(v)?.email||''); }
   if(k==='pref'){ S.user.prefs[e.target.dataset.k]=e.target.checked; save(); toast('Preference saved', `${PREFS.find(p=>p[0]===e.target.dataset.k)[1]} turned ${e.target.checked?'on':'off'}.`); }
 });
 $('#loginForm').addEventListener('submit', e => {
